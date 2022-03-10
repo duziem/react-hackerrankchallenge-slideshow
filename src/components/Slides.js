@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react';
 function Slides({slides}) {
     const [currentSlide, setCurrentSlide]= useState(slides[0])
     const [index, setIndex]= useState(0)
+    const [isClicked, setIsClicked]= useState(false);
 
     const handleClick= (e)=>{
         //index++
@@ -14,6 +15,7 @@ function Slides({slides}) {
             }
             copyIndex += 1;
             setIndex(copyIndex);
+            setIsClicked(true);
         }
         if(e.target.data-testid.includes('prev')){
             let copyIndex= index;
@@ -22,9 +24,11 @@ function Slides({slides}) {
             }
             copyIndex -= 1;
             setIndex(copyIndex);
+            setIsClicked(true)
         }
         if(e.target.data-testid.includes('restart')){
             setIndex(0);
+            setIsClicked(true)
         }
         
     }
@@ -37,7 +41,7 @@ function Slides({slides}) {
     return (
         <div>
             <div id="navigation" className="text-center">
-                <button data-testid="button-restart" className="small outlined" onClick= {handleClick} disabled= {index === 0} >Restart</button>
+                <button data-testid="button-restart" className="small outlined" onClick= {handleClick} disabled= {isClicked && index === 0} >Restart</button>
                 <button data-testid="button-prev" className="small" onClick= {handleClick} disabled= {index === 0}>Prev</button>
                 <button data-testid="button-next" className="small" onClick= {handleClick} disabled= {index === slides.length - 1}>Next</button>
             </div>
