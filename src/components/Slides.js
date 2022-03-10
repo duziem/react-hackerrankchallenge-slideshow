@@ -15,7 +15,7 @@ function Slides({slides}) {
             }
             copyIndex += 1;
             setIndex(copyIndex);
-            setIsClicked(true);
+            //setIsClicked(true);
         }
         if(e.target.data-testid.includes('prev')){
             let copyIndex= index;
@@ -24,17 +24,18 @@ function Slides({slides}) {
             }
             copyIndex -= 1;
             setIndex(copyIndex);
-            setIsClicked(true)
+            //setIsClicked(true)
         }
         if(e.target.data-testid.includes('restart')){
             setIndex(0);
-            setIsClicked(true)
+            //setIsClicked(true)
         }
         
     }
 
     useEffect(()=>{
         setCurrentSlide(slides[index])
+        setIsClicked(true)
     }, [index])
 
 
@@ -42,8 +43,8 @@ function Slides({slides}) {
         <div>
             <div id="navigation" className="text-center">
                 <button data-testid="button-restart" className="small outlined" onClick= {handleClick} disabled= {isClicked && index === 0} >Restart</button>
-                <button data-testid="button-prev" className="small" onClick= {handleClick} disabled= {index === 0}>Prev</button>
-                <button data-testid="button-next" className="small" onClick= {handleClick} disabled= {index === slides.length - 1}>Next</button>
+                <button data-testid="button-prev" className="small" onClick= {handleClick} disabled= {isClicked && index === 0}>Prev</button>
+                <button data-testid="button-next" className="small" onClick= {handleClick} disabled= {isClicked && index === slides.length - 1}>Next</button>
             </div>
             <div id="slide" className="card text-center">
                 <h1 data-testid="title">{currentSlide.title}</h1>
