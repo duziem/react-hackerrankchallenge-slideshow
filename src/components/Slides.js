@@ -8,7 +8,7 @@ function Slides({slides}) {
 
     const handleClick= (e)=>{
         //index++
-        if(e.target.data-testid.includes('next')){
+        if(e.target.id.includes('next')){
             let copyIndex= index;
             if(index === slides.length - 1){
                 copyIndex = 0;
@@ -17,7 +17,7 @@ function Slides({slides}) {
             setIndex(copyIndex);
             //setIsClicked(true);
         }
-        if(e.target.data-testid.includes('prev')){
+        if(e.target.id.includes('prev')){
             let copyIndex= index;
             if(index === 0){
                 copyIndex = slides.length - 1
@@ -26,7 +26,7 @@ function Slides({slides}) {
             setIndex(copyIndex);
             //setIsClicked(true)
         }
-        if(e.target.data-testid.includes('restart')){
+        if(e.target.id.includes('restart')){
             setIndex(0);
             //setIsClicked(true)
         }
@@ -42,9 +42,9 @@ function Slides({slides}) {
     return (
         <div>
             <div id="navigation" className="text-center">
-                <button data-testid="button-restart" className="small outlined" onClick= {handleClick} disabled= {isClicked && index === 0} >Restart</button>
-                <button data-testid="button-prev" className="small" onClick= {handleClick} disabled= {isClicked && index === 0}>Prev</button>
-                <button data-testid="button-next" className="small" onClick= {handleClick} disabled= {isClicked && index === slides.length - 1}>Next</button>
+                <button id='restart' data-testid="button-restart" className="small outlined" onClick= {handleClick} disabled= {isClicked && index === 0} >Restart</button>
+                <button id='prev' data-testid="button-prev" className="small" onClick= {handleClick} disabled= {isClicked && index === 0}>Prev</button>
+                <button id='next' data-testid="button-next" className="small" onClick= {handleClick} disabled= {isClicked && index === slides.length - 1}>Next</button>
             </div>
             <div id="slide" className="card text-center">
                 <h1 data-testid="title">{currentSlide.title}</h1>
